@@ -34,7 +34,7 @@ int main() {
 
     cout << "Hasil Pembagian Tugas Berdasarkan Urgensi" << endl;
 
-    cout << "Urgent - ≤ 2 hari" << endl;
+    cout << "[Urgent - ≤ 2 hari]" << endl;
     for (string& t : urgent) {
         cout << "- " << t << endl;
     }
