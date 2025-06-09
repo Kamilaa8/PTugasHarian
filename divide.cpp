@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
     int n;
-    cout << "Masukkan jumlah tugas: ";
+    cout << "Masukkan jumlah tugas: " << endl;
     cin >> n;
     cin.ignore(); 
     vector<string> urgent, medium, low;
@@ -15,9 +15,9 @@ int main() {
         int hari;
 
         cout << "Tugas ke-" << i + 1 << endl;
-        cout << "Nama tugas: ";
+        cout << "Nama tugas: " << endl;
         getline(cin, nama);
-        cout << "Berapa hari lagi menuju deadline? ";
+        cout << "Berapa hari lagi menuju deadline? " << endl;
         cin >> hari;
         cin.ignore();
 
@@ -39,12 +39,12 @@ int main() {
         cout << "- " << t << endl;
     }
 
-    cout << "[Medium - 3 sampai 5 hari]";
+    cout << "[Medium - 3 sampai 5 hari]" << endl;
     for (string& t : medium) {
         cout << "- " << t << endl;
     }
 
-    cout << "[Low - > 5 hari]";
+    cout << "[Low - > 5 hari]" << endl;
     for (string& t : low) {
         cout << "- " << t << endl;
     }
