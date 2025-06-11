@@ -94,34 +94,33 @@ void mainmenu() {
 
 int main() {
 	initscr();           
-    start_color();          
-    init_pair(1, COLOR_WHITE, COLOR_WHITE);
+	start_color();          
+	init_pair(1, COLOR_WHITE, COLOR_WHITE);
 
-    char nama[50], pilihan;
-    
+	char nama[50], pilihan;
+	
 	mvprintw(12, 44, "Selamat datang di tracker tugas");
-    mvprintw(14, 50, "Masukkan nama anda");
-    mvprintw(15, 50, "Username :");
-
-    refresh();
-
-    move(15, 61);
-    echo();
-    getstr(nama);
-
-    clear();
-    char pesan[100];
+	mvprintw(14, 50, "Masukkan nama anda");
+	mvprintw(15, 50, "Username :");
+	
+	refresh();
+	move(15, 61);
+	echo();
+	getstr(nama);
+	
+	clear();
+	char pesan[100];
 	sprintf(pesan, "Selamat datang, %s", nama);
-	mvprintw(15, 50, pesan);	
-    refresh();
-    Sleep(1000);
+	mvprintw(13, 50, pesan);	
+	refresh();
+	Sleep(1000);
 	clear();
 
 	do {
 		clear();
-    	mainmenu();
+		mainmenu();
 		move(16, 65);
-    	pilihan = getch(); 
+		pilihan = getch(); 
 	
 		switch (pilihan) {
 			case '1':
