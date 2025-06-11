@@ -127,12 +127,11 @@ int main() {
 				mvprintw(12, 50, ">> Lihat tugas");
 				getch();
 				break;
-
-			case '2':
-				clear();
-				mvprintw(12, 50, ">> Masukkan tugas baru");
-				getch();
-				break;
+			}
+			
+			case '2': {
+				
+			}
 
 			case '3':
 				clear();
