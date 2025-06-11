@@ -123,10 +123,7 @@ int main() {
 		
 		switch (pilihan) {
 			case '1': {
-				clear();
-				mvprintw(12, 50, ">> Lihat tugas");
-				getch();
-				break;
+				
 			}
 			
 			case '2': {
