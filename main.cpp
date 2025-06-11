@@ -31,6 +31,17 @@ vector<Tugas> divideInput(int jumlah) {
     }
     return daftarTugas;
 }
+
+void conquerTugas(const vector<Tugas>& input, vector<Tugas>& hasil) {
+    hasil = input;
+    sort(hasil.begin(), hasil.end(), [](const Tugas& a, const Tugas& b) {
+        if (a.hariMenujuDeadline != b.hariMenujuDeadline)
+            return a.hariMenujuDeadline < b.hariMenujuDeadline;
+        return a.prioritas < b.prioritas;
+    });
+}
+
+
 void mainmenu() {
     mvprintw(11, 55, "Menu Utama");
     mvprintw(13, 52, "1. Lihat tugas");
