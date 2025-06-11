@@ -10,6 +10,7 @@ struct Tugas {
     string nama;
     int hariMenujuDeadline;
     int prioritas;
+    int durasi;
 };
 
 vector<Tugas> divideInput(int jumlah) {
@@ -41,6 +42,19 @@ void conquerTugas(const vector<Tugas>& input, vector<Tugas>& hasil) {
     });
 }
 
+vector<Tugas> combineGreedy(const vector<Tugas>& tugasTerurut, int waktuTersedia) {
+    vector<Tugas> hasil;
+    int totalWaktu = 0;
+
+    for (const Tugas& t : tugasTerurut) {
+        if (totalWaktu + t.durasi <= waktuTersedia) {
+            hasil.push_back(t);
+            totalWaktu += t.durasi;
+        }
+    }
+
+    return hasil;
+}
 
 void mainmenu() {
     mvprintw(11, 55, "Menu Utama");
