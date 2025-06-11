@@ -15,22 +15,49 @@ struct Tugas {
 
 vector<Tugas> divideInput(int jumlah) {
     vector<Tugas> daftarTugas;
-    cin.ignore(); 
+    char buffer[100];
+
     for (int i = 0; i < jumlah; i++) {
-        Tugas t;
-        cout << "\nMasukkan nama tugas ke-" << i + 1 << ": ";
-        getline(cin, t.nama);
+        clear();
+        mvprintw(10, 52, "Masukkan data tugas ke-%d", i + 1);
 
-        cout << "Masukkan jumlah hari menuju deadline: ";
-        cin >> t.hariMenujuDeadline;
+        mvprintw(12, 40, "Nama tugas: ");
+        echo();
+        move(12, 52);
+        getstr(buffer);
+        noecho();
+        string nama(buffer);
 
-        cout << "Masukkan prioritas (1 = tinggi, 2 = sedang, 3 = rendah): ";
-        cin >> t.prioritas;
-        cin.ignore();
+        mvprintw(14, 40, "Jumlah hari menuju deadline: ");
+        echo();
+        move(14, 69);
+        getstr(buffer);
+        noecho();
+        int deadline = atoi(buffer);
 
+        mvprintw(16, 40, "Prioritas (1 = tinggi, 2 = sedang, 3 = rendah): ");
+        echo();
+        move(16, 88);
+        getstr(buffer);
+        noecho();
+        int prioritas = atoi(buffer);
+
+        mvprintw(18, 40, "Durasi (jam): ");
+        echo();
+        move(18, 54);
+        getstr(buffer);
+        noecho();
+        int durasi = atoi(buffer);
+
+        Tugas t = {nama, deadline, prioritas, durasi};
         daftarTugas.push_back(t);
+
+        mvprintw(20, 40, "Tugas berhasil dimasukkan!");
+        refresh();
+        Sleep(1000);
     }
-    return daftarTugas;
+
+    return daftarTugas;
 }
 
 void conquerTugas(const vector<Tugas>& input, vector<Tugas>& hasil) {
