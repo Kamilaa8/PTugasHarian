@@ -70,26 +70,25 @@ void conquerTugas(const vector<Tugas>& input, vector<Tugas>& hasil) {
 }
 
 vector<Tugas> combineGreedy(const vector<Tugas>& tugasTerurut, int waktuTersedia) {
-    vector<Tugas> hasil;
-    int totalWaktu = 0;
-
-    for (const Tugas& t : tugasTerurut) {
-        if (totalWaktu + t.durasi <= waktuTersedia) {
-            hasil.push_back(t);
-            totalWaktu += t.durasi;
-        }
-    }
-
-    return hasil;
+	vector<Tugas> hasil;
+	int totalWaktu = 0;
+	
+	for (const Tugas& t : tugasTerurut) {
+		if (totalWaktu + t.durasi <= waktuTersedia) {
+			hasil.push_back(t);
+			totalWaktu += t.durasi;
+		}
+	}
+	return hasil;
 }
 
 void mainmenu() {
-    mvprintw(11, 55, "Menu Utama");
-    mvprintw(13, 52, "1. Lihat tugas");
-    mvprintw(14, 52, "2. Masukkan tugas baru");
-    mvprintw(15, 52, "3. Keluar");
-    mvprintw(16, 52, "Pilih Opsi :");
-    refresh();
+	mvprintw(11, 55, "Menu Utama");
+	mvprintw(13, 52, "1. Lihat tugas");
+	mvprintw(14, 52, "2. Masukkan tugas baru");
+	mvprintw(15, 52, "3. Keluar");
+	mvprintw(16, 52, "Pilih Opsi :");
+	refresh();
 }
 
 int main() {
@@ -121,9 +120,9 @@ int main() {
 		mainmenu();
 		move(16, 65);
 		pilihan = getch(); 
-	
+		
 		switch (pilihan) {
-			case '1':
+			case '1': {
 				clear();
 				mvprintw(12, 50, ">> Lihat tugas");
 				getch();
