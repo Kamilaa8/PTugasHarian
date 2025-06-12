@@ -150,7 +150,20 @@ int main() {
 			}
 			
 			case '2': {
-				
+				clear();
+				mvprintw(10, 38, "Masukkan jumlah tugas yang ingin dimasukkan: ");
+				echo();
+        			char jumlahStr[10];
+        			getstr(jumlahStr);
+       		 		noecho();
+        			int jumlah = atoi(jumlahStr);  
+        			vector<Tugas> inputTugas = divideInput(jumlah);
+        			daftarTugas.insert(daftarTugas.end(), inputTugas.begin(), inputTugas.end());
+
+       	 			mvprintw(20, 50, "Tugas berhasil ditambahkan!");
+        			refresh();
+        			Sleep(1000);
+       				break;
 			}
 
 			case '3':
