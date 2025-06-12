@@ -123,7 +123,14 @@ int main() {
 		
 		switch (pilihan) {
 			case '1': {
-				
+				clear();
+				mvprintw(10, 34, ">> Daftar tugas yang diurutkan:");
+				conquerTugas(daftarTugas, tugasTerurut);
+				int y = 12;
+				for (const Tugas& t : tugasTerurut) {
+					mvprintw(y++, 34, "Tugas: %s | Deadline: %d hari | Prioritas: %d | Durasi: %d jam",
+						t.nama.c_str(), t.hariMenujuDeadline, t.prioritas, t.durasi);
+				}
 			}
 			
 			case '2': {
