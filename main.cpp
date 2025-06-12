@@ -131,6 +131,22 @@ int main() {
 					mvprintw(y++, 34, "Tugas: %s | Deadline: %d hari | Prioritas: %d | Durasi: %d jam",
 						t.nama.c_str(), t.hariMenujuDeadline, t.prioritas, t.durasi);
 				}
+				mvprintw(y + 1, 34, "Masukkan waktu tersedia hari ini (dalam jam): ");
+				echo();
+                                char input[10];
+                                getstr(input);
+                                waktuTersedia = atoi(input);
+                                noecho();
+
+                                tugasDipilih = combineGreedy(tugasTerurut, waktuTersedia);
+                                mvprintw(y + 3, 34, "Tugas yang direkomendasikan untuk dikerjakan hari ini:");
+                                y += 5;
+                                for (const Tugas& t : tugasDipilih) {
+                                    mvprintw(y++, 36, "- %s (%d jam)", t.nama.c_str(), t.durasi);
+                                }
+
+                                getch();
+                                break;
 			}
 			
 			case '2': {
