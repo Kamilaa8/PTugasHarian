@@ -57,8 +57,9 @@ vector<Tugas> divideInput(int jumlah) {
         Sleep(1000);
     }
 
-    return daftarTugas;
+    return daftarTugas;
 }
+
 
 void conquerTugas(const vector<Tugas>& input, vector<Tugas>& hasil) {
     hasil = input;
@@ -70,119 +71,124 @@ void conquerTugas(const vector<Tugas>& input, vector<Tugas>& hasil) {
 }
 
 vector<Tugas> combineGreedy(const vector<Tugas>& tugasTerurut, int waktuTersedia) {
-	vector<Tugas> hasil;
-	int totalWaktu = 0;
-	
-	for (const Tugas& t : tugasTerurut) {
-		if (totalWaktu + t.durasi <= waktuTersedia) {
-			hasil.push_back(t);
-			totalWaktu += t.durasi;
-		}
-	}
-	return hasil;
+    vector<Tugas> hasil;
+    int totalWaktu = 0;
+
+    for (const Tugas& t : tugasTerurut) {
+        if (totalWaktu + t.durasi <= waktuTersedia) {
+            hasil.push_back(t);
+            totalWaktu += t.durasi;
+        }
+    }
+
+    return hasil;
 }
 
 void mainmenu() {
-	mvprintw(11, 55, "Menu Utama");
-	mvprintw(13, 52, "1. Lihat tugas");
-	mvprintw(14, 52, "2. Masukkan tugas baru");
-	mvprintw(15, 52, "3. Keluar");
-	mvprintw(16, 52, "Pilih Opsi :");
-	refresh();
+    mvprintw(11, 55, "Menu Utama");
+    mvprintw(13, 52, "1. Lihat tugas");
+    mvprintw(14, 52, "2. Masukkan tugas baru");
+    mvprintw(15, 52, "3. Keluar");
+    mvprintw(16, 52, "Pilih Opsi :");
+    refresh();
 }
 
 int main() {
-	initscr();           
-	start_color();          
-	init_pair(1, COLOR_WHITE, COLOR_WHITE);
+    initscr();           
+    start_color();          
+    init_pair(1, COLOR_WHITE, COLOR_WHITE);
 
-	char nama[50], pilihan;
-	
-	mvprintw(12, 44, "Selamat datang di tracker tugas");
-	mvprintw(14, 50, "Masukkan nama anda");
-	mvprintw(15, 50, "Username :");
-	
-	refresh();
-	move(15, 61);
-	echo();
-	getstr(nama);
-	
-	clear();
-	char pesan[100];
-	sprintf(pesan, "Selamat datang, %s", nama);
-	mvprintw(13, 50, pesan);	
-	refresh();
-	Sleep(1000);
-	clear();
+    char nama[50], pilihan;
 
-	do {
-		clear();
-		mainmenu();
-		move(16, 65);
-		pilihan = getch(); 
-		
-		switch (pilihan) {
-			case '1': {
-				clear();
-				mvprintw(10, 34, ">> Daftar tugas yang diurutkan:");
-				conquerTugas(daftarTugas, tugasTerurut);
-				int y = 12;
-				for (const Tugas& t : tugasTerurut) {
-					mvprintw(y++, 34, "Tugas: %s | Deadline: %d hari | Prioritas: %d | Durasi: %d jam",
-						t.nama.c_str(), t.hariMenujuDeadline, t.prioritas, t.durasi);
-				}
-				mvprintw(y + 1, 34, "Masukkan waktu tersedia hari ini (dalam jam): ");
-				echo();
-                                char input[10];
-                                getstr(input);
-                                waktuTersedia = atoi(input);
-                                noecho();
+    vector<Tugas> daftarTugas;
+    vector<Tugas> tugasTerurut;
+    vector<Tugas> tugasDipilih;
+    int waktuTersedia = 0;
 
-                                tugasDipilih = combineGreedy(tugasTerurut, waktuTersedia);
-                                mvprintw(y + 3, 34, "Tugas yang direkomendasikan untuk dikerjakan hari ini:");
-                                y += 5;
-                                for (const Tugas& t : tugasDipilih) {
-                                    mvprintw(y++, 36, "- %s (%d jam)", t.nama.c_str(), t.durasi);
-                                }
+    mvprintw(12, 44, "Selamat datang di tracker tugas");
+    mvprintw(14, 50, "Masukkan nama anda");
+    mvprintw(15, 50, "Username :");
 
-                                getch();
-                                break;
-			}
-			
-			case '2': {
-				clear();
-				mvprintw(10, 38, "Masukkan jumlah tugas yang ingin dimasukkan: ");
-				echo();
-        			char jumlahStr[10];
-        			getstr(jumlahStr);
-       		 		noecho();
-        			int jumlah = atoi(jumlahStr);  
-        			vector<Tugas> inputTugas = divideInput(jumlah);
-        			daftarTugas.insert(daftarTugas.end(), inputTugas.begin(), inputTugas.end());
+    refresh();
+    move(15, 61);
+    echo();
+    getstr(nama);
 
-       	 			mvprintw(20, 50, "Tugas berhasil ditambahkan!");
-        			refresh();
-        			Sleep(1000);
-       				break;
-			}
+    clear();
+    char pesan[100];
+    sprintf(pesan, "Selamat datang, %s", nama);
+    mvprintw(13, 50, pesan);    
+    refresh();
+    Sleep(1000);
+    clear();
 
-			case '3':
-				clear();
-				mvprintw(15, 50, "Keluar dari program...");
-				refresh();
-				Sleep(1000);
-				break;
+    do {
+        clear();
+        mainmenu();
+        move(16, 65);
+        pilihan = getch(); 
+    
+        switch (pilihan) {
+    case '1': {
+        clear();
+        mvprintw(10, 34, ">> Daftar tugas yang diurutkan:");
+        conquerTugas(daftarTugas, tugasTerurut);
+        int y = 12; 
+        for (const Tugas& t : tugasTerurut) {
+            mvprintw(y++, 34, "Tugas: %s | Deadline: %d hari | Prioritas: %d | Durasi: %d jam", 
+                t.nama.c_str(), t.hariMenujuDeadline, t.prioritas, t.durasi);
+        }
+        mvprintw(y + 1, 34, "Masukkan waktu tersedia hari ini (dalam jam): ");
+        echo();
+        char input[10];
+        getstr(input);
+        waktuTersedia = atoi(input);
+        noecho();
 
-			default:
-				mvprintw(18, 52, "Input salah. Coba lagi!");
-				refresh();
-				Sleep(1000);
-				break;
-				}
-			} while (pilihan != '3');
+        tugasDipilih = combineGreedy(tugasTerurut, waktuTersedia);
+        mvprintw(y + 3, 34, "Tugas yang direkomendasikan untuk dikerjakan hari ini:");
+        y += 5;
+        for (const Tugas& t : tugasDipilih) {
+            mvprintw(y++, 36, "- %s (%d jam)", t.nama.c_str(), t.durasi);
+        }
 
-		endwin();
-		 
-	return 0;
+        getch();
+        break;
+    }
+
+    case '2': {
+        clear();
+        mvprintw(10, 38, "Masukkan jumlah tugas yang ingin dimasukkan: ");
+        echo();
+        char jumlahStr[10];
+        getstr(jumlahStr);
+        noecho();
+        int jumlah = atoi(jumlahStr);  
+        vector<Tugas> inputTugas = divideInput(jumlah);
+        daftarTugas.insert(daftarTugas.end(), inputTugas.begin(), inputTugas.end());
+
+        mvprintw(20, 50, "Tugas berhasil ditambahkan!");
+        refresh();
+        Sleep(1000);
+        break;
+    }
+
+    case '3':
+        clear();
+        mvprintw(15, 50, "Keluar dari program...");
+        refresh();
+        Sleep(1000);
+        break;
+
+    default:
+        mvprintw(18, 52, "Input salah. Coba lagi!");
+        refresh();
+        Sleep(1000);
+        break;
 }
 
+    } while (pilihan != '3');
+
+    endwin();
+    return 0;
+}
