@@ -52,9 +52,6 @@ vector<Tugas> divideInput(int jumlah) {
         Tugas t = {nama, deadline, prioritas, durasi};
         daftarTugas.push_back(t);
 
-        mvprintw(20, 40, "Tugas berhasil dimasukkan!");
-        refresh();
-        Sleep(1000);
     }
 
     return daftarTugas;
